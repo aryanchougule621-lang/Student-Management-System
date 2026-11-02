@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test import/*.test.js metrics/*.test.js validation/*.test.js",
+    "dev:dashboard": "node dev-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "firebase": "^13.1.0"
+  }
+}

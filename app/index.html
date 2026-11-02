@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Student Management — Admin</title>
+  <link rel="stylesheet" href="/dashboard.css">
+  <script type="module" src="/dashboard.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">STUDENT MANAGEMENT</p><h1>Admin dashboard</h1></div>
+    <div class="top-actions"><span id="environment-badge" class="badge">DEMO EMULATORS</span><button id="sign-out" class="button button-quiet hidden" type="button">Sign out</button></div>
+  </header>
+
+  <main>
+    <div id="notice" class="notice hidden" role="status" aria-live="polite"></div>
+
+    <section id="login-panel" class="panel login-panel">
+      <div><p class="eyebrow">ADMIN ACCESS</p><h2>Sign in to continue</h2><p>Only accounts with the trusted admin claim can use this dashboard.</p></div>
+      <form id="login-form" class="login-form">
+        <label>Email<input id="email" name="email" type="email" autocomplete="username" required></label>
+        <label>Password<input id="password" name="password" type="password" autocomplete="current-password" required></label>
+        <button class="button button-primary" type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <div id="admin-content" class="hidden">
+      <section aria-labelledby="summary-title">
+        <div class="section-heading"><div><p class="eyebrow">OVERVIEW</p><h2 id="summary-title">Student activity</h2></div><button id="refresh" class="button button-quiet" type="button">Refresh</button></div>
+        <div id="metric-cards" class="metrics-grid" aria-live="polite"></div>
+        <div id="latest-import" class="panel latest-import"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="import-history-title">
+        <div class="section-heading"><div><p class="eyebrow">OPERATIONS</p><h2 id="import-history-title">Recent imports</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>File</th><th>Status</th><th>Started (UTC)</th><th>Rows</th><th>Accepted</th><th>Rejected</th><th>Quarantined</th></tr></thead><tbody id="imports-body"><tr><td colspan="7" class="empty">No import history.</td></tr></tbody></table></div>
+      </section>
+
+      <section class="panel" aria-labelledby="import-title">
+        <div><p class="eyebrow">CSV WORKFLOW</p><h2 id="import-title">Upload and preview</h2><p>Files are processed by the server. Previewing makes no student or activity-event writes. Maximum file size: 2 MiB.</p></div>
+        <form id="upload-form" class="upload-form">
+          <label class="file-picker">CSV file<input id="csv-file" type="file" accept=".csv,text/csv" required></label>
+          <button class="button button-primary" type="submit">Create preview</button>
+        </form>
+        <div id="preview-panel" class="preview-panel hidden"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="students-title">
+        <div class="section-heading"><div><p class="eyebrow">RECORDS</p><h2 id="students-title">Students</h2></div></div>
+        <form id="filter-form" class="filters">
+          <label>Activity<select id="activity-filter"><option value="">All activity</option><option value="active">Active</option><option value="inactive">Inactive</option><option value="never_active">Never active</option></select></label>
+          <label>Enrollment status<input id="enrollment-filter" maxlength="64" autocomplete="off"></label>
+          <label>External ID<input id="external-id-filter" maxlength="128" autocomplete="off"></label>
+          <button class="button button-secondary" type="submit">Apply filters</button>
+        </form>
+        <div class="table-wrap"><table><thead><tr><th>Student</th><th>External ID</th><th>Email</th><th>Enrollment</th><th>Activity</th><th>Last activity</th></tr></thead><tbody id="students-body"><tr><td colspan="6" class="empty">Sign in to load student records.</td></tr></tbody></table></div>
+        <div class="table-footer"><span id="list-meta"></span><button id="next-page" class="button button-quiet hidden" type="button">Next page</button></div>
+      </section>
+    </div>
+  </main>
+  <footer>Local MVP • Demo Firebase emulators only • No production connection</footer>
+</body>
+</html>

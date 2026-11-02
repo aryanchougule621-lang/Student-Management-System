@@ -1,0 +1,18 @@
+{
+  "name": "student-management-functions",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "prepare:shared": "node scripts/prepare-shared-import-logic.js",
+    "provision:demo-admin": "node scripts/provision-demo-admin.js",
+    "test:emulator": "npm run prepare:shared && firebase emulators:exec --config ../firebase.local.json --project demo-student-management --only auth,firestore,functions,storage \"node --test --test-concurrency=1 test/*.emulator.test.js\""
+  },
+  "dependencies": {
+    "firebase-admin": "^14.5.0",
+    "firebase-functions": "^7.4.0"
+  }
+}
